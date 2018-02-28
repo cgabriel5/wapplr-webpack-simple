@@ -18,6 +18,9 @@ const mode = process.env.NODE_ENV;
 const is_wpd_server = mode === "server";
 const is_prod = mode === "production";
 
+// Dynamically get the folder name.
+var rootdir = path.parse(__dirname).base;
+
 // Hold the used plugins in an array to be able to modify based on whether
 // running in production or development.
 let plugins = [
@@ -31,7 +34,7 @@ let plugins = [
 			port: 3000,
 			proxy: is_wpd_server
 				? "localhost:8080"
-				: "http://localhost/projects/webpack-wapplr/dist/index.html"
+				: `http://localhost/projects/${rootdir}/dist/index.html`
 			// [https://gist.github.com/christopher4lis/3358d92395d686375c50f7ebb218f1dc]
 		},
 		// Plugin options.
